@@ -1,4 +1,4 @@
-import 'package:adivinata/actividades/res/colores.dart';
+import 'package:adivinata/res/colores.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

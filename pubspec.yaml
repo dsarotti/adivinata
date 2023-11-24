@@ -87,4 +87,4 @@ flutter:
   fonts:
     - family: Alice
       fonts:
-        - asset: font/Alice-Regular.ttf
+        - asset: lib/res/font/Alice-Regular.ttf
