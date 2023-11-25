@@ -1,5 +1,5 @@
-import 'package:adivinata/bindings/login_binding.dart';
-import 'package:adivinata/res/colores.dart';
+import 'bindings/login_binding.dart';
+import 'res/colores.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

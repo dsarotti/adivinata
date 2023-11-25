@@ -1,4 +1,4 @@
-import 'package:adivinata/res/componentes/componentes_estaticos.dart';
+import '../../../res/componentes/componentes_estaticos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +12,8 @@ class LoginHeader extends StatelessWidget {
         boxShadow: const [ComponentesEstaticos.sombraContainersDefault],
         color: Get.theme.colorScheme.inversePrimary,
         borderRadius: const BorderRadius.only(
-          bottomLeft: ComponentesEstaticos.radioDefault,
-          bottomRight: ComponentesEstaticos.radioDefault,
+          bottomLeft: ComponentesEstaticos.radioContenedor,
+          bottomRight: ComponentesEstaticos.radioContenedor,
         ),
       ),
       height: 120,
