@@ -1,3 +1,4 @@
+import 'package:adivinata/res/componentes/componentes_estaticos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,19 +9,22 @@ class LoginHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        boxShadow: const [ComponentesEstaticos.sombraContainersDefault],
         color: Get.theme.colorScheme.inversePrimary,
         borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          bottomLeft: ComponentesEstaticos.radioDefault,
+          bottomRight: ComponentesEstaticos.radioDefault,
         ),
       ),
       height: 120,
       width: Get.width,
       child: const FittedBox(
         child: Text(
-          "@divinata",
+          "Adivinata",
           style: TextStyle(
-              fontWeight: FontWeight.w900
+              fontWeight: FontWeight.w900,
+            fontFamily: "Alice",
+            shadows: [ComponentesEstaticos.sombraDefault],
           ),
         ),
       ),

@@ -1,8 +1,9 @@
+import 'package:adivinata/bindings/login_binding.dart';
 import 'package:adivinata/res/colores.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'actividades/autenticacion/home_screen.dart';
+import 'actividades/autenticacion/actividad_inicio_sesion.dart';
 
 class Adivinata extends StatelessWidget {
   const Adivinata({super.key});
@@ -18,14 +19,15 @@ class Adivinata extends StatelessWidget {
     return GetMaterialApp(
       getPages: [
         GetPage(
-          name: '/home_screen',
-          page: () => const HomeScreen(),
+          name: '/inicio_sesion',
+          page: () => const ActividadInicioSesion(),
           title: 'Adivinata',
+          binding: LoginBinding(),
         ),
       ],
-      initialRoute: '/home_screen',
+      initialRoute: '/inicio_sesion',
       debugShowCheckedModeBanner: false,
-      title:'Adivinata',
+      title:'Login',
       theme: ThemeData(
         colorScheme: const ColorScheme(
             brightness: Brightness.dark,

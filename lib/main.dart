@@ -1,4 +1,4 @@
-import 'package:adivinata/Adivinata.dart';
+import 'package:adivinata/adivinata.dart';
 import 'package:flutter/material.dart';
 
 void main() {
