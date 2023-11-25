@@ -9,7 +9,8 @@ class CampoUsuario extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ControladorFormularioLogin controlador = Get.find<ControladorFormularioLogin>();
+    ControladorFormularioLogin controlador =
+        Get.find<ControladorFormularioLogin>();
     return TextFormField(
       autocorrect: false,
       enableSuggestions: false,
@@ -26,8 +27,7 @@ class CampoUsuario extends StatelessWidget {
         ),
         floatingLabelStyle: TextStyle(
             color: Colores.primarioOscuro,
-            shadows: [ComponentesEstaticos.sombraTextoFino]
-        ),
+            shadows: [ComponentesEstaticos.sombraTextoFino]),
         border: OutlineInputBorder(
           borderRadius: ComponentesEstaticos.borderRadiusInterno,
           borderSide: BorderSide.none,

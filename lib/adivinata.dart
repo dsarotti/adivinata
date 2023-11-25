@@ -27,7 +27,7 @@ class Adivinata extends StatelessWidget {
       ],
       initialRoute: '/inicio_sesion',
       debugShowCheckedModeBanner: false,
-      title:'Login',
+      title: 'Login',
       theme: ThemeData(
         colorScheme: const ColorScheme(
             brightness: Brightness.dark,
@@ -41,8 +41,7 @@ class Adivinata extends StatelessWidget {
             background: Colores.fondo,
             onBackground: Colores.fondo,
             surface: Colores.primarioOscuro,
-            onSurface: Colores.primarioOscuro
-        ),
+            onSurface: Colores.primarioOscuro),
         fontFamily: 'Alice',
       ),
     );

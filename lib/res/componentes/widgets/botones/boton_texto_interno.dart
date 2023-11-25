@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../../../colores.dart';
 import '../../componentes_estaticos.dart';
 
 class BotonTextoInterno extends StatelessWidget {
-  const BotonTextoInterno({super.key,required this.texto, required this.onPressed});
+  const BotonTextoInterno(
+      {super.key, required this.texto, required this.onPressed});
 
   final String texto;
   final VoidCallback? onPressed;
@@ -20,14 +20,18 @@ class BotonTextoInterno extends StatelessWidget {
           Colores.acierto,
         ),
         shape: MaterialStateProperty.all<OutlinedBorder>(
-          const RoundedRectangleBorder(borderRadius: ComponentesEstaticos.borderRadiusInterno),
+          const RoundedRectangleBorder(
+              borderRadius: ComponentesEstaticos.borderRadiusInterno),
+        ),
+        minimumSize: MaterialStateProperty.all(
+          const Size(double.infinity, 50),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () => {FocusScope.of(context).unfocus(), onPressed},
       child: Text(
         style: const TextStyle(
           fontFamily: "Alice",
-          fontSize: 30,
+          fontSize: 25,
           shadows: [ComponentesEstaticos.sombraTextoFino],
         ),
         texto,

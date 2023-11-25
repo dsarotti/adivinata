@@ -1,3 +1,4 @@
+import '../../res/componentes/widgets/botones/boton_texto_interno.dart';
 import 'widgets/formulario_inicio_sesion/formulario_inicio_sesion.dart';
 import 'widgets/login_header.dart';
 import '../../res/colores.dart';
@@ -10,9 +11,8 @@ class ActividadInicioSesion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-    return  Scaffold(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: [
@@ -26,13 +26,39 @@ class ActividadInicioSesion extends StatelessWidget {
                   borderRadius: ComponentesEstaticos.borderRadiusContenedor,
                 ),
                 padding: ComponentesEstaticos.paddingDefault,
-                width: Get.width*0.9,
+                width: Get.width * 0.9,
                 constraints: const BoxConstraints(
                   minWidth: 200,
                 ),
                 child: const FormularioInicioSesion(),
               ),
-            )
+            ),
+            Padding(
+              padding: ComponentesEstaticos.paddingBody,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: BotonTextoInterno(
+                      texto: "Registrarse",
+                      onPressed: () => {},
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: ComponentesEstaticos.paddingBody,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: BotonTextoInterno(
+                      texto: "Olvidé mi contraseña",
+                      onPressed: () => {},
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

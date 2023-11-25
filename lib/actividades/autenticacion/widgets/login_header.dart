@@ -22,7 +22,7 @@ class LoginHeader extends StatelessWidget {
         child: Text(
           "Adivinata",
           style: TextStyle(
-              fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w900,
             fontFamily: "Alice",
             shadows: [ComponentesEstaticos.sombraDefault],
           ),
