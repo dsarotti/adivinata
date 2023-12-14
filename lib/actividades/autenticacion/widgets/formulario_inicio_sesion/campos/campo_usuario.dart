@@ -35,7 +35,7 @@ class CampoUsuario extends StatelessWidget {
         prefixIcon: Icon(
           Icons.account_circle,
           size: 40,
-          color: Colores.textoGris,
+          color: Colores.primarioOscuro,
         ),
       ),
     );

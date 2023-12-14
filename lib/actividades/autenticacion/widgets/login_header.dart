@@ -18,13 +18,14 @@ class LoginHeader extends StatelessWidget {
       ),
       height: 120,
       width: Get.width,
-      child: const FittedBox(
+      child: FittedBox(
         child: Text(
           "Adivinata",
           style: TextStyle(
             fontWeight: FontWeight.w900,
             fontFamily: "Alice",
-            shadows: [ComponentesEstaticos.sombraDefault],
+            color: Get.theme.colorScheme.primary,
+            shadows: const [ComponentesEstaticos.sombraDefault],
           ),
         ),
       ),

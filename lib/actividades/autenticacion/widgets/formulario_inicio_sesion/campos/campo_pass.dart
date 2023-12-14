@@ -9,8 +9,7 @@ class CampoPass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ControladorFormularioLogin controlador =
-        Get.find<ControladorFormularioLogin>();
+    ControladorFormularioLogin controlador = Get.find<ControladorFormularioLogin>();
     return Obx(
       () => TextFormField(
         obscureText: controlador.mostrarPass.value,
@@ -35,7 +34,7 @@ class CampoPass extends StatelessWidget {
           prefixIcon: const Icon(
             Icons.lock,
             size: 40,
-            color: Colores.textoGris,
+            color: Colores.primarioOscuro,
           ),
           suffixIcon: IconButton(
             icon: Icon(
