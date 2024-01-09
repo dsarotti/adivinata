@@ -1,9 +1,11 @@
 import 'bindings/login_binding.dart';
+import 'bindings/registro_binding.dart';
 import 'res/colores.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'actividades/autenticacion/actividad_inicio_sesion.dart';
+import 'actividades/registro/actividad_registro.dart';
 
 class Adivinata extends StatelessWidget {
   const Adivinata({super.key});
@@ -23,6 +25,12 @@ class Adivinata extends StatelessWidget {
           page: () => const ActividadInicioSesion(),
           title: 'Adivinata',
           binding: LoginBinding(),
+        ),
+        GetPage (
+          name: '/registro',
+          page: () => const ActividadRegistro(),
+          title: 'Registro',
+          binding: RegistroBinding(),
         ),
       ],
       initialRoute: '/inicio_sesion',

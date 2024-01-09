@@ -1,13 +1,13 @@
-import '../../res/componentes/widgets/botones/boton_texto_interno.dart';
-import 'widgets/formulario_inicio_sesion/formulario_inicio_sesion.dart';
-import 'widgets/login_header.dart';
-import '../../res/colores.dart';
-import '../../res/componentes/componentes_estaticos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ActividadInicioSesion extends StatelessWidget {
-  const ActividadInicioSesion({super.key});
+import '../../res/colores.dart';
+import '../../res/componentes/componentes_estaticos.dart';
+import '../../res/componentes/widgets/botones/boton_texto_interno.dart';
+import '../autenticacion/widgets/login_header.dart';
+
+class ActividadRegistro extends StatelessWidget {
+  const ActividadRegistro({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,16 @@ class ActividadInicioSesion extends StatelessWidget {
                 constraints: const BoxConstraints(
                   minWidth: 200,
                 ),
-                child: const FormularioInicioSesion(),
+                child: Column(
+                  children: [
+                    Padding(padding: ComponentesEstaticos.paddingDefault,
+                      child: BotonTextoInterno(
+                  texto: "Registrarse",
+                  onPressed: () => {},
+                )
+                    )
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -39,8 +48,8 @@ class ActividadInicioSesion extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BotonTextoInterno(
-                      texto: "Registrarse",
-                      onPressed: () => {Get.toNamed('/registro')},
+                      texto: "registro",
+                      onPressed: () => {},
                     ),
                   ),
                 ],

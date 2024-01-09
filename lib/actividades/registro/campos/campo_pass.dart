@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controlador/controlador_formulario.dart';
+import '../controlador/controlador_formulario_registro.dart';
 import '../../../../../res/colores.dart';
 import '../../../../../res/componentes/componentes_estaticos.dart';
 
@@ -9,7 +9,7 @@ class CampoPass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ControladorFormularioLogin controlador = Get.find<ControladorFormularioLogin>();
+    ControladorFormularioRegistro controlador = Get.find<ControladorFormularioRegistro>();
     return Obx(
       () => TextFormField(
         obscureText: controlador.mostrarPass.value,
@@ -29,7 +29,8 @@ class CampoPass extends StatelessWidget {
           ),
           floatingLabelStyle: const TextStyle(
               color: Colores.primarioOscuro,
-              shadows: [ComponentesEstaticos.sombraTextoFino]),
+              shadows: [ComponentesEstaticos.sombraTextoFino],
+          ),
           border: const OutlineInputBorder(
             borderRadius: ComponentesEstaticos.borderRadiusInterno,
             borderSide: BorderSide.none,

@@ -8,4 +8,5 @@ class Colores {
   static const Color aciertoParcial = Color(0xFFDBD096);
   static const Color acierto = Color(0xFF677964);
   static const Color fallo = Color(0xFFDFB5B5);
+  static const Color textoSobreClaro = Color(0xFF677964);
 }

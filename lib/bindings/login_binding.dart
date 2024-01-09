@@ -1,4 +1,4 @@
-import '../actividades/autenticacion/controladores/controlador_formulario.dart';
+import '../actividades/autenticacion/controlador/controlador_formulario.dart';
 import 'package:get/get.dart';
 
 class LoginBinding extends Bindings {

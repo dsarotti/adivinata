@@ -27,7 +27,7 @@ class BotonTextoInterno extends StatelessWidget {
           const Size(double.infinity, 50),
         ),
       ),
-      onPressed: () => {FocusScope.of(context).unfocus(), onPressed},
+      onPressed: onPressed,
       child: Text(
         style: const TextStyle(
           fontFamily: "Alice",

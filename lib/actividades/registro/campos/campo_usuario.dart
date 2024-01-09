@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controlador/controlador_formulario.dart';
+import '../controlador/controlador_formulario_registro.dart';
 import '../../../../../res/colores.dart';
 import '../../../../../res/componentes/componentes_estaticos.dart';
 
@@ -9,8 +9,8 @@ class CampoUsuario extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ControladorFormularioLogin controlador =
-        Get.find<ControladorFormularioLogin>();
+    ControladorFormularioRegistro controlador =
+        Get.find<ControladorFormularioRegistro>();
     return TextFormField(
       autocorrect: false,
       enableSuggestions: false,
