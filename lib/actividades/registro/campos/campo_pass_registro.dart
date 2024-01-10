@@ -4,8 +4,8 @@ import '../controlador/controlador_formulario_registro.dart';
 import '../../../../../res/colores.dart';
 import '../../../../../res/componentes/componentes_estaticos.dart';
 
-class CampoPass extends StatelessWidget {
-  const CampoPass({super.key});
+class CampoPassRegistro extends StatelessWidget {
+  const CampoPassRegistro({super.key});
 
   @override
   Widget build(BuildContext context) {

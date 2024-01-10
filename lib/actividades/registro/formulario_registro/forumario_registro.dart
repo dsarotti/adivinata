@@ -1,12 +1,13 @@
+import 'package:adivinata/actividades/registro/campos/campo_email_registro.dart';
 import 'package:flutter/material.dart';
-import 'campos/campo_usuario.dart';
-import 'campos/campo_pass.dart';
-import '../../../../res/componentes/widgets/botones/boton_texto_interno.dart';
-import '../../../../res/colores.dart';
-import '../../../../res/componentes/componentes_estaticos.dart';
+import '../campos/campo_usuario_registro.dart';
+import '../campos/campo_pass_registro.dart';
+import '../../../../../res/componentes/widgets/botones/boton_texto_interno.dart';
+import '../../../../../res/colores.dart';
+import '../../../../../res/componentes/componentes_estaticos.dart';
 
-class FormularioInicioSesion extends StatelessWidget {
-  const FormularioInicioSesion({super.key});
+class FormularioRegistro extends StatelessWidget {
+  const FormularioRegistro({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +20,26 @@ class FormularioInicioSesion extends StatelessWidget {
               letterSpacing: 2,
               shadows: [ComponentesEstaticos.sombraTextoFino],
             ),
-            "Iniciar sesión"),
+            "Registrarse"),
         const Padding(
           padding: ComponentesEstaticos.paddingDefault,
-          child: CampoUsuario(),
+          child: CampoUsuarioRegistro(),
         ),
         const Padding(
           padding: ComponentesEstaticos.paddingDefault,
-          child: CampoUsuario(),
+          child: CampoEmailRegistro(),
         ),
         const Padding(
           padding: ComponentesEstaticos.paddingDefault,
-          child: CampoPass(),
+          child: CampoPassRegistro(),
         ),
         Padding(
           padding: ComponentesEstaticos.paddingDefault,
           child: BotonTextoInterno(
-            texto: "Iniciar sesión",
-            onPressed: () => {},
+            texto: "Enviar",
+            onPressed: () => {
+              //TODO: botón enviar datos de registro
+            },
           ),
         ),
       ],

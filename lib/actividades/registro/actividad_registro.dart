@@ -1,9 +1,9 @@
+import 'package:adivinata/actividades/registro/formulario_registro/forumario_registro.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../res/colores.dart';
 import '../../res/componentes/componentes_estaticos.dart';
-import '../../res/componentes/widgets/botones/boton_texto_interno.dart';
 import '../autenticacion/widgets/login_header.dart';
 
 class ActividadRegistro extends StatelessWidget {
@@ -30,42 +30,11 @@ class ActividadRegistro extends StatelessWidget {
                 constraints: const BoxConstraints(
                   minWidth: 200,
                 ),
-                child: Column(
+                child: const Column(
                   children: [
-                    Padding(padding: ComponentesEstaticos.paddingDefault,
-                      child: BotonTextoInterno(
-                  texto: "Registrarse",
-                  onPressed: () => {},
-                )
-                    )
+                    FormularioRegistro(),
                   ],
                 ),
-              ),
-            ),
-            Padding(
-              padding: ComponentesEstaticos.paddingBody,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: BotonTextoInterno(
-                      texto: "registro",
-                      onPressed: () => {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: ComponentesEstaticos.paddingBody,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: BotonTextoInterno(
-                      texto: "Olvidé mi contraseña",
-                      onPressed: () => {},
-                    ),
-                  ),
-                ],
               ),
             ),
           ],

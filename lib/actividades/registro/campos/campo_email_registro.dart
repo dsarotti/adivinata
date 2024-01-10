@@ -4,25 +4,25 @@ import '../controlador/controlador_formulario_registro.dart';
 import '../../../../../res/colores.dart';
 import '../../../../../res/componentes/componentes_estaticos.dart';
 
-class CampoUsuario extends StatelessWidget {
-  const CampoUsuario({super.key});
+class CampoEmailRegistro extends StatelessWidget {
+  const CampoEmailRegistro({super.key});
 
   @override
   Widget build(BuildContext context) {
     ControladorFormularioRegistro controlador =
-        Get.find<ControladorFormularioRegistro>();
+    Get.find<ControladorFormularioRegistro>();
     return TextFormField(
       autocorrect: false,
       enableSuggestions: false,
       spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
-      controller: controlador.controllerUsuario,
+      controller: controlador.controllerEmail,
       style: const TextStyle(
         color: Colores.acierto,
       ),
       decoration: const InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        labelText: "Usuario",
+        labelText: "E-mail",
         labelStyle: TextStyle(
           color: Colores.textoSobreClaro,
           fontSize: 30,
@@ -35,7 +35,7 @@ class CampoUsuario extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
         prefixIcon: Icon(
-          Icons.account_circle,
+          Icons.email_outlined,
           size: 40,
           color: Colores.primarioOscuro,
         ),
