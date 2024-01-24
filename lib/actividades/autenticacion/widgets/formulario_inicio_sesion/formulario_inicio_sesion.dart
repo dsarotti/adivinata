@@ -18,7 +18,6 @@ class FormularioInicioSesion extends StatelessWidget {
             style: TextStyle(
               color: Colores.primarioOscuro,
               fontSize: 40,
-              letterSpacing: 2,
               shadows: [ComponentesEstaticos.sombraTextoFino],
             ),
             "Iniciar sesión"),

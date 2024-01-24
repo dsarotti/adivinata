@@ -23,7 +23,7 @@ class ControladorFormularioLogin extends GetxController {
 
       //Establece el usuario de la app.
       //TODO: serializar el usuario y guardarlo en sharedPreferences
-      UsuarioApp().setUsuario(usuario, correoElectronico);
+      UsuarioApp().setUsuario(controllerUsuario.value.text, correoElectronico);
       Get.offNamed('menu_principal');
     }
   }
