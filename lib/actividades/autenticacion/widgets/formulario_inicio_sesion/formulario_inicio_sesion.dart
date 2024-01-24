@@ -1,4 +1,6 @@
+import 'package:adivinata/actividades/autenticacion/controlador/controlador_formulario.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'campos/campo_usuario.dart';
 import 'campos/campo_pass.dart';
 import '../../../../res/componentes/widgets/botones/boton_texto_interno.dart';
@@ -31,8 +33,8 @@ class FormularioInicioSesion extends StatelessWidget {
         Padding(
           padding: ComponentesEstaticos.paddingDefault,
           child: BotonTextoInterno(
-            texto: "Iniciar sesión",
-            onPressed: () => {},
+            text: "Iniciar sesión",
+            onPressed: () => {Get.find<ControladorFormularioLogin>().logIn()},
           ),
         ),
       ],

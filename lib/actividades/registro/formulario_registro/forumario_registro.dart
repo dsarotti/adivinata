@@ -1,5 +1,7 @@
 import 'package:adivinata/actividades/registro/campos/campo_email_registro.dart';
+import 'package:adivinata/actividades/registro/controlador/controlador_formulario_registro.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../campos/campo_usuario_registro.dart';
 import '../campos/campo_pass_registro.dart';
 import '../../../../../res/componentes/widgets/botones/boton_texto_interno.dart';
@@ -36,10 +38,8 @@ class FormularioRegistro extends StatelessWidget {
         Padding(
           padding: ComponentesEstaticos.paddingDefault,
           child: BotonTextoInterno(
-            texto: "Enviar",
-            onPressed: () => {
-              //TODO: botón enviar datos de registro
-            },
+            text: "Enviar",
+            onPressed: () => Get.find<ControladorFormularioRegistro>().enviarFormularioRegistro(),
           ),
         ),
       ],

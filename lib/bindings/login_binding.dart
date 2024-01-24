@@ -5,6 +5,6 @@ class LoginBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<ControladorFormularioLogin>(ControladorFormularioLogin(),
-        permanent: false);
+        permanent: true);
   }
 }

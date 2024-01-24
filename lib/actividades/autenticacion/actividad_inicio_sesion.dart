@@ -39,8 +39,8 @@ class ActividadInicioSesion extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BotonTextoInterno(
-                      texto: "Registrarse",
-                      onPressed: () => {Get.toNamed('/registro')},
+                      text: "Registrarse",
+                      onPressed: ((){Get.toNamed('/registro');}),
                     ),
                   ),
                 ],
@@ -52,7 +52,7 @@ class ActividadInicioSesion extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BotonTextoInterno(
-                      texto: "Olvidé mi contraseña",
+                      text: "Olvidé mi contraseña",
                       onPressed: () => {},
                     ),
                   ),

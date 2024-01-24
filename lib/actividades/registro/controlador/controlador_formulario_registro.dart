@@ -14,4 +14,11 @@ class ControladorFormularioRegistro extends GetxController {
   void switchMostrarPass() {
     mostrarPass.value = !mostrarPass.value;
   }
+
+  void enviarFormularioRegistro(){
+    //TODO registrar usuario enviando el formulario de registro.
+    
+    Get.back();
+  }
+
 }

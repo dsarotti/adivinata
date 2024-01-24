@@ -1,32 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../colores.dart';
 import '../../componentes_estaticos.dart';
 
 class BotonTextoInterno extends StatelessWidget {
   const BotonTextoInterno(
-      {super.key, required this.texto, required this.onPressed});
+      {super.key, required this.text, required this.onPressed});
 
-  final String texto;
+  final String text;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(
-          Colores.primarioClaro,
-        ),
-        overlayColor: MaterialStateProperty.all<Color>(
-          Colores.acierto,
-        ),
-        shape: MaterialStateProperty.all<OutlinedBorder>(
-          const RoundedRectangleBorder(
-              borderRadius: ComponentesEstaticos.borderRadiusInterno),
-        ),
-        minimumSize: MaterialStateProperty.all(
-          const Size(double.infinity, 50),
-        ),
-      ),
       onPressed: onPressed,
       child: Text(
         style: const TextStyle(
@@ -34,7 +18,7 @@ class BotonTextoInterno extends StatelessWidget {
           fontSize: 25,
           shadows: [ComponentesEstaticos.sombraTextoFino],
         ),
-        texto,
+        text,
       ),
     );
   }

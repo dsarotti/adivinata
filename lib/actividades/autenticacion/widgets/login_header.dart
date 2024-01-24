@@ -1,6 +1,6 @@
-import '../../../res/componentes/componentes_estaticos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../res/componentes/componentes_estaticos.dart';
 
 class LoginHeader extends StatelessWidget {
   const LoginHeader({super.key});
