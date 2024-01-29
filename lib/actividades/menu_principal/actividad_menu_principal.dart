@@ -1,6 +1,7 @@
 import 'package:adivinata/res/componentes/widgets/botones/boton_seleccion_juego.dart';
 import 'package:adivinata/res/componentes/widgets/header/login_header.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ActividadMenuPrincipal extends StatelessWidget {
   const ActividadMenuPrincipal({super.key});
@@ -26,6 +27,7 @@ class ActividadMenuPrincipal extends StatelessWidget {
                           texto: "Palabra Aleatoria",
                           icono: Icons.today,
                           onPressed: () => {
+                            Get.toNamed('/palabra_aleatoria')
                             //TODO: ir a juego Palabra Aleatoria
                           }),
                       BotonSeleccionjuego(

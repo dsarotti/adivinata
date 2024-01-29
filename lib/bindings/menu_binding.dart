@@ -5,6 +5,6 @@ class MenuBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<ControladorMenuPrincipal>(ControladorMenuPrincipal(),
-        permanent: false);
+        permanent: true);
   }
 }

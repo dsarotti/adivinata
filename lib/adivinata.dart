@@ -1,5 +1,7 @@
 import 'package:adivinata/actividades/menu_principal/actividad_menu_principal.dart';
+import 'package:adivinata/actividades/partidas/palabra_aleatoria/actividad_palabra_aleatoria.dart';
 import 'package:adivinata/bindings/menu_binding.dart';
+import 'package:adivinata/bindings/palabra_aleatoria_binding.dart';
 import 'package:adivinata/model/usuario_app.dart';
 import 'package:adivinata/res/componentes/componentes_estaticos.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +44,12 @@ class Adivinata extends StatelessWidget {
           page: () => const ActividadMenuPrincipal(),
           title: 'Menu principal',
           binding: MenuBinding(),
+        ),
+        GetPage(
+          name: '/palabra_aleatoria',
+          page: () => ActividadPalabraAleatoria(),
+          title: 'Palabra Aleatoria',
+          binding: PalabraAleatoriaBinding(),
         ),
       ],
       //TODO: si hay usuario con sesion iniciada ir directamente al menu (implementar shared_preferences)
