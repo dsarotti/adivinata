@@ -12,12 +12,16 @@ class ControladorPalabraAleatoria extends GetxController{
   ///Lista observable de las palabras que ya se han introducido
   RxList<String> palabrasIntroducidas = List<String>.empty(growable: true).obs;
 
+  void submit(String cadena){
+    palabrasIntroducidas.add(cadena);
+    palabraActual.clear();
+  }
 
   @override
   void onClose() {
     ///Al salir de la partida se limpian los campos.
     palabraActual.clear();
-    palabrasIntroducidas.value.clear();
+    palabrasIntroducidas.clear();
 
     super.onClose();
   }
