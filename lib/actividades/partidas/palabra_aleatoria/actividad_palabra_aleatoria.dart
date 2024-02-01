@@ -51,7 +51,6 @@ class ActividadPalabraAleatoria extends StatelessWidget {
             ),
             Expanded(
               child: Obx(() {
-                controlador.palabrasIntroducidas.value;
                 return SingleChildScrollView(
                   reverse: false,
                   child: Column(
@@ -105,7 +104,9 @@ class ActividadPalabraAleatoria extends StatelessWidget {
 
                                         ///establece el color de esta letra fondo dependiendo del acierto o fallo
                                         color: controlador.palabrasIntroducidas[i][j] ==
-                                                (j < controlador.palabraAleatoria.length ? controlador.palabraAleatoria[j] : null)
+                                                (j < controlador.palabraAleatoria.length
+                                                    ? controlador.palabraAleatoria[j]
+                                                    : null)
                                             ? Get.theme.colorScheme.inversePrimary
                                             : Colores.primarioOscuro,
                                       ),
@@ -129,9 +130,7 @@ class ActividadPalabraAleatoria extends StatelessWidget {
                 onSubmitted: (value) => controlador.submit(value),
                 maxLength: controlador.palabraAleatoria.length,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colores.primarioOscuro,
-                ),
+                style: const TextStyle(color: Colores.primarioOscuro, fontSize: 40),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                   fillColor: Colores.primarioClaro,
@@ -139,7 +138,7 @@ class ActividadPalabraAleatoria extends StatelessWidget {
                   hintText: "${controlador.palabraAleatoria.length} letras",
                   hintStyle: const TextStyle(
                     color: Colores.textoGris,
-                    fontSize: 30,
+                    fontSize: 40,
                   ),
                   border: const OutlineInputBorder(
                     borderRadius: ComponentesEstaticos.borderRadiusInterno,

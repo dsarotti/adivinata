@@ -57,11 +57,11 @@ class Adivinata extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login',
       theme: ThemeData(
+        primaryColor: const Color(0xFF455243),
         colorScheme: const ColorScheme(
           brightness: Brightness.dark,
           primary: Colores.primarioOscuro,
           onPrimary: Colores.primarioClaro,
-          inversePrimary: Colores.primarioClaro,
           secondary: Colores.primarioClaro,
           onSecondary: Colores.primarioOscuro,
           error: Colores.fallo,
