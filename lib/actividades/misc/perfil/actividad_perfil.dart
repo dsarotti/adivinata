@@ -63,14 +63,6 @@ class ActividadPerfil extends StatelessWidget {
                                     fontSize: 25,
                                     shadows: [ComponentesEstaticos.sombraTextoFino],
                                   ),
-                                  "Apellidos:  ${UsuarioApp().apellidos??"n/a"}"),
-                              Text(
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: Colores.primarioOscuro,
-                                    fontSize: 25,
-                                    shadows: [ComponentesEstaticos.sombraTextoFino],
-                                  ),
                                   "Email:  ${UsuarioApp().correoElectronico}"),
                           ],
                           ),

@@ -15,7 +15,6 @@ class AdivinataServicio extends GetxService {
       if (usuario != null) {
         UsuarioApp().id=id;
         UsuarioApp().nombreUsuario= usuario.nombreUsuario;
-        UsuarioApp().apellidos = usuario.apellidos;
         UsuarioApp().correoElectronico = usuario.correoElectronico;
         return true;
       }
@@ -30,7 +29,6 @@ class AdivinataServicio extends GetxService {
   logout() {
     UsuarioApp().id=null;
     UsuarioApp().nombreUsuario=null;
-    UsuarioApp().apellidos = null;
     UsuarioApp().correoElectronico = null;
     Get.offAllNamed("/inicio_sesion");
   }

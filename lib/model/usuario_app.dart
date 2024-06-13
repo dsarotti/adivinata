@@ -1,7 +1,6 @@
 class UsuarioApp {
   int? id;
   String? nombreUsuario;
-  String? apellidos;
   String? correoElectronico;
   static final UsuarioApp _instancia = UsuarioApp._privateConstructor();
 

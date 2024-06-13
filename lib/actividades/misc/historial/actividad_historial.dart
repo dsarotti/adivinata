@@ -40,12 +40,12 @@ class ActividadHistorial extends StatelessWidget {
                     ),
                     "Historial"),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Obx(() {
                       Get.find<ControladorHistorial>().widgetList.length;
                       return SizedBox(
                         width: context.width,
-                        height: context.height-350,
+                        height: context.height/2,
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

@@ -54,7 +54,7 @@ class ActividadInicioSesion extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BotonTextoInterno(
-                      text: "Olvidé mi contraseña",
+                      text: "Borrar BD (debug)",
                       onPressed: () => Get.find<AdivinataServicio>().dbHelper.borrardb(),
                     ),
                   ),

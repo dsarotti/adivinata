@@ -18,7 +18,7 @@ class DatabaseHelper {
   DatabaseHelper._internal();
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
+    if (_database != null && _database!.isOpen) return _database!;
 
     _database = await _initDatabase();
     return _database!;
@@ -38,6 +38,7 @@ class DatabaseHelper {
     if (await databaseExists(path)) {
       await deleteDatabase(path);
     }
+    _database = await _initDatabase();
   }
 
 
@@ -46,7 +47,6 @@ class DatabaseHelper {
       CREATE TABLE IF NOT EXISTS usuarios(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre_usuario TEXT,
-        apellidos INTEGER,
         email INTEGER,
         pass INTEGER
       )
@@ -134,7 +134,7 @@ class DatabaseHelper {
   Future<int?> insertUsuario(Usuario usuario,String pass) async {
     final db = await database;
     int? id = await db.insert('usuarios',
-      {"nombre_usuario":usuario.nombreUsuario, "apellidos":usuario.apellidos, "email":usuario.correoElectronico, "pass":pass},
+      {"nombre_usuario":usuario.nombreUsuario, "email":usuario.correoElectronico, "pass":pass},
         conflictAlgorithm: ConflictAlgorithm.abort
     );
     return id;
@@ -142,12 +142,11 @@ class DatabaseHelper {
 
   Future<Usuario?> getUsuario(int id) async {
     final db = await database;
-    final List<Map<String, dynamic>> rs = await db.rawQuery('SELECT id,nombre_usuario,apellidos,email FROM usuarios WHERE id = ?', [id],);
+    final List<Map<String, dynamic>> rs = await db.rawQuery('SELECT id,nombre_usuario,email FROM usuarios WHERE id = ?', [id],);
     if (rs.isNotEmpty) {
       Usuario usuario = Usuario(
         rs.first["id"],
         rs.first["nombre_usuario"],
-        rs.first["apellidos"],
         rs.first["email"],
 
       );
