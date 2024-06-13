@@ -1,3 +1,5 @@
+import 'package:adivinata/actividades/adivinata/servicio/adivinata_servicio.dart';
+
 import '../../res/componentes/widgets/botones/boton_texto_interno.dart';
 import 'widgets/formulario_inicio_sesion/formulario_inicio_sesion.dart';
 import 'widgets/login_header.dart';
@@ -53,7 +55,7 @@ class ActividadInicioSesion extends StatelessWidget {
                   Expanded(
                     child: BotonTextoInterno(
                       text: "Olvidé mi contraseña",
-                      onPressed: () => {},
+                      onPressed: () => Get.find<AdivinataServicio>().dbHelper.borrardb(),
                     ),
                   ),
                 ],

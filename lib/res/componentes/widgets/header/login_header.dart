@@ -1,3 +1,4 @@
+import 'package:adivinata/actividades/adivinata/servicio/adivinata_servicio.dart';
 import 'package:adivinata/actividades/menu_principal/controlador/controlador_menu_principal.dart';
 import 'package:adivinata/res/colores.dart';
 import 'package:adivinata/res/componentes/componentes_estaticos.dart';
@@ -9,6 +10,7 @@ class HeaderApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.log("RUTA: ${Get.currentRoute}");
     return Container(
       decoration: BoxDecoration(
         boxShadow: const [ComponentesEstaticos.sombraContainersDefault],
@@ -22,6 +24,23 @@ class HeaderApp extends StatelessWidget {
       width: Get.width,
       child: Row(
         children: [
+          if(!["menu_principal","inicio_sesion","/registro"].contains(Get.currentRoute))
+            ...{
+             Expanded(
+                flex: 1,
+                child: InkWell(
+                  onTap: () => Get.back(),
+                  child: Container(
+                    constraints: const BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(bottomLeft: ComponentesEstaticos.radioContenedor),
+                      color: Colores.acierto,
+                    ),
+                    child: const Icon(size: 45, color: Colores.primarioClaro, Icons.arrow_back),
+                  ),
+                ),
+              )
+            },
           Expanded(
             flex: 6,
             child: Row(
@@ -48,16 +67,21 @@ class HeaderApp extends StatelessWidget {
           Expanded(
             flex:1,
             //TODO: Convertir este container en un InkWell para cerrar sesión
-            child: Container(
-              constraints: BoxConstraints.expand(),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomRight: ComponentesEstaticos.radioContenedor),
-                color: Colores.acierto,
+            child: InkWell(
+              onTap: () {
+                  Get.find<AdivinataServicio>().logout();
+              },
+              child: Container(
+                constraints: const BoxConstraints.expand(),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(bottomRight: ComponentesEstaticos.radioContenedor),
+                  color: Colores.acierto,
+                ),
+                child: const Icon(
+                  size: 45,
+                  color: Colores.primarioClaro,
+                    Icons.logout),
               ),
-              child: Icon(
-                size: 45,
-                color: Colores.primarioClaro,
-                  Icons.logout),
             ),
           ),
         ],

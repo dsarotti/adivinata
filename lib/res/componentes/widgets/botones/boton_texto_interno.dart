@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import '../../componentes_estaticos.dart';
 
 class BotonTextoInterno extends StatelessWidget {
-  const BotonTextoInterno(
-      {super.key, required this.text, required this.onPressed});
+  const BotonTextoInterno( {super.key, required this.text, required this.onPressed});
 
   final String text;
   final VoidCallback? onPressed;

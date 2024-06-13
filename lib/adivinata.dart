@@ -1,7 +1,12 @@
 import 'package:adivinata/actividades/menu_principal/actividad_menu_principal.dart';
+import 'package:adivinata/actividades/misc/historial/actividad_historial.dart';
+import 'package:adivinata/actividades/misc/perfil/actividad_perfil.dart';
 import 'package:adivinata/actividades/partidas/palabra_aleatoria/actividad_palabra_aleatoria.dart';
+import 'package:adivinata/actividades/partidas/palabra_aleatoria_tiempo/actividad_palabra_aleatoria_tiempo.dart';
+import 'package:adivinata/bindings/adivinata_servicio_binding.dart';
 import 'package:adivinata/bindings/menu_binding.dart';
 import 'package:adivinata/bindings/palabra_aleatoria_binding.dart';
+import 'package:adivinata/bindings/palabra_aleatoria_tiempo_binding.dart';
 import 'package:adivinata/model/usuario_app.dart';
 import 'package:adivinata/res/componentes/componentes_estaticos.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +15,7 @@ import 'package:get/get.dart';
 
 import 'actividades/autenticacion/actividad_inicio_sesion.dart';
 import 'actividades/registro/actividad_registro.dart';
+import 'bindings/historial_binding.dart';
 import 'bindings/login_binding.dart';
 import 'bindings/registro_binding.dart';
 import 'res/colores.dart';
@@ -51,9 +57,27 @@ class Adivinata extends StatelessWidget {
           title: 'Palabra Aleatoria',
           binding: PalabraAleatoriaBinding(),
         ),
+        GetPage(
+          name: '/palabra_aleatoria_tiempo',
+          page: () => ActividadPalabraAleatoriaTiempo(),
+          title: 'Palabra Aleatoria Cronometrado',
+          binding: PalabraAleatoriaTiempoBinding(),
+        ),
+        GetPage(
+          name: '/perfil',
+          page: () => const ActividadPerfil(),
+          title: 'Perfil',
+        ),
+        GetPage(
+          name: '/historial',
+          page: () => const ActividadHistorial(),
+          title: 'Historial',
+          binding: HistorialBinding(),
+        ),
       ],
       //TODO: si hay usuario con sesion iniciada ir directamente al menu (implementar shared_preferences)
       initialRoute: UsuarioApp().nombreUsuario==null?'/inicio_sesion':'menu_principal',
+      initialBinding: AdivinataServicioBinding(),
       debugShowCheckedModeBanner: false,
       title: 'Login',
       theme: ThemeData(

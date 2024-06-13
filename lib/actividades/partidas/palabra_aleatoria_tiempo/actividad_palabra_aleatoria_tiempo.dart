@@ -1,0 +1,181 @@
+import 'package:adivinata/actividades/partidas/controlador_partida/controlador_palabra_aleatoria.dart';
+import 'package:adivinata/actividades/partidas/palabra_aleatoria_tiempo/controlador/controlador_tiempo.dart';
+import 'package:adivinata/res/colores.dart';
+import 'package:adivinata/res/componentes/componentes_estaticos.dart';
+import 'package:adivinata/res/componentes/widgets/botones/boton_texto_interno.dart';
+import 'package:adivinata/res/componentes/widgets/header/login_header.dart';
+import 'package:adivinata/res/componentes/widgets/navbar/footer_navbar.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class ActividadPalabraAleatoriaTiempo extends StatelessWidget {
+  ActividadPalabraAleatoriaTiempo({super.key});
+
+  final ControladorPalabraAleatoria controlador = Get.find<ControladorPalabraAleatoria>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: FooterNavbar(),
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: Column(
+          children: [
+            const HeaderApp(),
+            Container(
+              decoration: const BoxDecoration(
+                color: Colores.primarioClaro,
+                boxShadow: [ComponentesEstaticos.sombraContainersDefault],
+                borderRadius: ComponentesEstaticos.borderRadiusContenedor,
+              ),
+              margin: ComponentesEstaticos.paddingDefault,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              width: Get.width * 0.9,
+              constraints: const BoxConstraints(
+                minWidth: 200,
+              ),
+              child: Column(
+                children: [
+                  const Text(
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colores.primarioOscuro,
+                        fontSize: 40,
+                        shadows: [ComponentesEstaticos.sombraTextoFino],
+                      ),
+                      "Cronometrado"),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colores.primarioOscuro,
+                          fontSize: 20,
+                          shadows: [ComponentesEstaticos.sombraTextoFino],
+                        ),
+                        "Adivina la palabra antes de que se acabe el tiempo."),
+                  ),
+                  Obx(() {
+                    return Text(
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colores.primarioOscuro,
+                          fontSize: 40,
+                          shadows: [ComponentesEstaticos.sombraTextoFino],
+                        ),
+                        Get.find<ControladorTiempo>().tiempoRestanteTxt.value);
+                  }),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Obx(() {
+                if (Get.find<ControladorTiempo>().isActive.value || controlador.palabrasIntroducidas.isNotEmpty) {
+                  return SingleChildScrollView(
+                    reverse: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      verticalDirection: VerticalDirection.down,
+                      children: [
+                        for (int i = controlador.palabrasIntroducidas.length - 1; i >= 0; i--)
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Text(
+                                  (i + 1).toString(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 40,
+                                    color: Colores.primarioOscuro,
+                                    shadows: [ComponentesEstaticos.sombraTextoFino],
+                                  ),
+                                ),
+                              ),
+                              for (int j = 0; j < controlador.palabrasIntroducidas[i].length; j++)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 2),
+                                  child: Container(
+                                    width: 40,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      borderRadius: ComponentesEstaticos.borderRadiusContenedor,
+                                      boxShadow: const [ComponentesEstaticos.sombraContainersDefault],
+
+                                      ///establece el color del fondo dependiendo del acierto o fallo
+                                      color: controlador.palabrasIntroducidas[i][j] ==
+                                              (j < controlador.palabraAleatoria.value.length ? controlador.palabraAleatoria.value[j] : null)
+                                          ? Colores.acierto
+                                          : controlador.palabraAleatoria.contains(controlador.palabrasIntroducidas[i][j])
+                                              ? Colores.aciertoParcial
+                                              : Colores.fallo,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        controlador.palabrasIntroducidas[i][j],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 40,
+
+                                          ///establece el color de esta letra fondo dependiendo del acierto o fallo
+                                          color: controlador.palabrasIntroducidas[i][j] ==
+                                                  (j < controlador.palabraAleatoria.value.length ? controlador.palabraAleatoria.value[j] : null)
+                                              ? Get.theme.colorScheme.inversePrimary
+                                              : Colores.primarioOscuro,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: BotonTextoInterno(text: "Iniciar", onPressed: () => Get.find<ControladorTiempo>().iniciarCuentaAtras()),
+                  );
+                }
+              }),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12.0, right: 12, left: 12),
+              child: Obx(() {
+                controlador.palabraAleatoria;
+                return TextField(
+                  buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}) => null,
+                  enabled: Get.find<ControladorTiempo>().isActive.value,
+                  autocorrect: false,
+                  controller: controlador.palabraActual,
+                  onSubmitted: (value) => controlador.submit(value.toLowerCase()),
+                  maxLength: controlador.palabraAleatoria.value.length,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colores.primarioOscuro, fontSize: 40),
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    fillColor: Colores.primarioClaro,
+                    filled: true,
+                    hintText: "${controlador.palabraAleatoria.value.length} letras",
+                    hintStyle: const TextStyle(
+                      color: Colores.textoGris,
+                      fontSize: 40,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderRadius: ComponentesEstaticos.borderRadiusInterno,
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                );
+              }),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

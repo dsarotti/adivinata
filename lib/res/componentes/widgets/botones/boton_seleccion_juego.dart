@@ -12,7 +12,7 @@ class BotonSeleccionjuego extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        width: 120,
+        width: 240,
         height: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -30,14 +30,14 @@ class BotonSeleccionjuego extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
 
-                fontSize: 20,
+                fontSize: 30,
                 fontWeight: FontWeight.w500,
                 shadows: [ComponentesEstaticos.sombraTextoFino]
               ),
             ),
             Icon(
                 icono,
-              size: 45,
+              size: 60,
               shadows: const [ComponentesEstaticos.sombraTextoFino],
             ),
           ],

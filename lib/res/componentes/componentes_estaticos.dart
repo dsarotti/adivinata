@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final class ComponentesEstaticos{
   ///sombras
   static const Shadow sombraDefault = Shadow(blurRadius: 8,color: Colors.black45,offset: Offset(0.3, 0.3));
-  static const Shadow sombraTextoFino = Shadow(blurRadius: 6,color: Colors.black45,offset: Offset(1, 1));
+  static const Shadow sombraTextoFino = Shadow(blurRadius: 4,color: Colors.black45,offset: Offset(1, 1));
   static const BoxShadow sombraContainersDefault = BoxShadow(blurRadius: 8,color: Colors.black45,offset: Offset(3, 3));
 
   ///radios

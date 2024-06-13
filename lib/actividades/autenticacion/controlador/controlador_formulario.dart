@@ -1,4 +1,4 @@
-import 'package:adivinata/model/usuario_app.dart';
+import 'package:adivinata/actividades/adivinata/servicio/adivinata_servicio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,16 +15,11 @@ class ControladorFormularioLogin extends GetxController {
     mostrarPass.value = !mostrarPass.value;
   }
 
-  void logIn(){
-    //TODO: intentar inicio de sesión, obtener datos del usuario de la BD.
-    //Temporalmente el login es Dante - abc123.
-    if(controllerUsuario.value.text=="Dante"&&controllerPass.value.text =="abc123."){
-      String correoElectronico = "dante@dante.com";
-
-      //Establece el usuario de la app.
-      //TODO: serializar el usuario y guardarlo en sharedPreferences
-      UsuarioApp().setUsuario(controllerUsuario.value.text, correoElectronico);
+  void logIn()async{
+    if(await Get.find<AdivinataServicio>().iniciarSesion(controllerUsuario.value.text, controllerPass.value.text)){
       Get.offNamed('menu_principal');
+    }else{
+      Get.snackbar("Error de inicio de sesión", "Combinación de usuario y contraseña equivocada");
     }
   }
 }

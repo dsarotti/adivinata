@@ -1,16 +1,21 @@
-import 'package:adivinata/actividades/partidas/palabra_aleatoria/controlador/controlador_palabra_aleatoria.dart';
+import 'package:adivinata/actividades/partidas/controlador_partida/controlador_palabra_aleatoria.dart';
 import 'package:adivinata/res/colores.dart';
 import 'package:adivinata/res/componentes/componentes_estaticos.dart';
 import 'package:adivinata/res/componentes/widgets/header/login_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../res/componentes/widgets/navbar/footer_navbar.dart';
+
 class ActividadPalabraAleatoria extends StatelessWidget {
   ActividadPalabraAleatoria({super.key});
+
   final ControladorPalabraAleatoria controlador = Get.find<ControladorPalabraAleatoria>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: FooterNavbar(),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Column(
@@ -87,9 +92,7 @@ class ActividadPalabraAleatoria extends StatelessWidget {
 
                                     ///establece el color del fondo dependiendo del acierto o fallo
                                     color: controlador.palabrasIntroducidas[i][j] ==
-                                            (j < controlador.palabraAleatoria.length
-                                                ? controlador.palabraAleatoria[j]
-                                                : null)
+                                            (j < controlador.palabraAleatoria.value.length ? controlador.palabraAleatoria.value[j] : null)
                                         ? Colores.acierto
                                         : controlador.palabraAleatoria.contains(controlador.palabrasIntroducidas[i][j])
                                             ? Colores.aciertoParcial
@@ -104,9 +107,7 @@ class ActividadPalabraAleatoria extends StatelessWidget {
 
                                         ///establece el color de esta letra fondo dependiendo del acierto o fallo
                                         color: controlador.palabrasIntroducidas[i][j] ==
-                                                (j < controlador.palabraAleatoria.length
-                                                    ? controlador.palabraAleatoria[j]
-                                                    : null)
+                                                (j < controlador.palabraAleatoria.value.length ? controlador.palabraAleatoria.value[j] : null)
                                             ? Get.theme.colorScheme.inversePrimary
                                             : Colores.primarioOscuro,
                                       ),
@@ -123,29 +124,32 @@ class ActividadPalabraAleatoria extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 12.0, right: 12, left: 12),
-              child: TextField(
-                buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}) => null,
-                autocorrect: false,
-                controller: controlador.palabraActual,
-                onSubmitted: (value) => controlador.submit(value),
-                maxLength: controlador.palabraAleatoria.length,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colores.primarioOscuro, fontSize: 40),
-                textAlignVertical: TextAlignVertical.center,
-                decoration: InputDecoration(
-                  fillColor: Colores.primarioClaro,
-                  filled: true,
-                  hintText: "${controlador.palabraAleatoria.length} letras",
-                  hintStyle: const TextStyle(
-                    color: Colores.textoGris,
-                    fontSize: 40,
+              child: Obx(() {
+                controlador.palabraAleatoria;
+                return TextField(
+                  buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}) => null,
+                  autocorrect: false,
+                  controller: controlador.palabraActual,
+                  onSubmitted: (value) => controlador.submit(value.toLowerCase()),
+                  maxLength: controlador.palabraAleatoria.value.length,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colores.primarioOscuro, fontSize: 40),
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    fillColor: Colores.primarioClaro,
+                    filled: true,
+                    hintText: "${controlador.palabraAleatoria.value.length} letras",
+                    hintStyle: const TextStyle(
+                      color: Colores.textoGris,
+                      fontSize: 40,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderRadius: ComponentesEstaticos.borderRadiusInterno,
+                      borderSide: BorderSide.none,
+                    ),
                   ),
-                  border: const OutlineInputBorder(
-                    borderRadius: ComponentesEstaticos.borderRadiusInterno,
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
+                );
+              }),
             )
           ],
         ),
