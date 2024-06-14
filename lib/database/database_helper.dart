@@ -1,12 +1,17 @@
 import 'dart:io';
-import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import '../model/partida.dart';
 import '../model/usuario.dart';
 import 'package:sqflite/sqflite.dart';
 
-
+/// DatabaseHelper es una clase singleton que proporciona métodos para interactuar con la base de datos SQLite.
+///
+/// Esta clase proporciona funcionalidades para:
+/// - Inicializar la base de datos.
+/// - Crear tablas.
+/// - Insertar, obtener y listar registros de las tablas de partidas y usuarios.
+/// - Manejar el inicio de sesión y el registro de usuarios.
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
   static Database? _database;
@@ -17,13 +22,14 @@ class DatabaseHelper {
 
   DatabaseHelper._internal();
 
+  /// Obtiene la instancia de la base de datos, inicializándola si es necesario.
   Future<Database> get database async {
     if (_database != null && _database!.isOpen) return _database!;
-
     _database = await _initDatabase();
     return _database!;
   }
 
+  /// Inicializa la base de datos, creando las tablas necesarias.
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, 'adivinata.db');
@@ -32,6 +38,7 @@ class DatabaseHelper {
     return db;
   }
 
+  /// Borra la base de datos existente y la reinicializa.
   Future<void> borrardb() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, 'adivinata.db');
@@ -41,14 +48,14 @@ class DatabaseHelper {
     _database = await _initDatabase();
   }
 
-
+  /// Crea las tablas `usuarios` y `partidas` si no existen.
   void _onCreate(Database db) {
     db.execute('''
       CREATE TABLE IF NOT EXISTS usuarios(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre_usuario TEXT,
-        email INTEGER,
-        pass INTEGER
+        email TEXT,
+        pass TEXT
       )
       ''');
 
@@ -58,30 +65,16 @@ class DatabaseHelper {
         usuario_id INT,
         palabra TEXT,
         intentos INTEGER,
-        FOREIGN KEY (usuario_id) REFERENCES flavors(usuarios)
+        FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
       )
       ''');
   }
 
-  Future<void> dropDatabase() async {
-    try {
-      Directory documentsDirectory = await getApplicationDocumentsDirectory();
-      String path = join(documentsDirectory.path, 'adivinata.db');
-      final file = File(path);
+  // Métodos de partidas
 
-      if (await file.exists()) {
-        await file.delete();
-        Get.log('Base de datos eliminada correctamente.');
-      } else {
-        Get.log('La base de datos no existe.');
-      }
-    } catch (e) {
-      Get.log('Error al eliminar la base de datos: $e');
-    }
-  }
-
-// Métodos de partidas
-
+  /// Inserta una nueva partida en la tabla `partidas`.
+  ///
+  /// [partida] es el objeto Partida que se va a insertar.
   Future<void> insertPartida(Partida partida) async {
     final db = await database;
     await db.insert(
@@ -95,6 +88,9 @@ class DatabaseHelper {
     );
   }
 
+  /// Obtiene una lista de todas las partidas de la tabla `partidas`.
+  ///
+  /// Retorna una lista de objetos Partida.
   Future<List<Partida>> getPartidasList() async {
     final db = await database;
     final List<Map<String, dynamic>> result = await db.query('partidas', columns: ['id']);
@@ -109,6 +105,11 @@ class DatabaseHelper {
     return partidasList;
   }
 
+  /// Obtiene una partida específica por su ID.
+  ///
+  /// [id] es el ID de la partida.
+  ///
+  /// Retorna un objeto Partida o null si no se encuentra.
   Future<Partida?> getPartida(int id) async {
     final db = await database;
     final List<Map<String, dynamic>> rs = await db.query(
@@ -130,25 +131,40 @@ class DatabaseHelper {
     }
   }
 
-  //Métodos de usuarios
-  Future<int?> insertUsuario(Usuario usuario,String pass) async {
+  // Métodos de usuarios
+
+  /// Inserta un nuevo usuario en la tabla `usuarios`.
+  ///
+  /// [usuario] es el objeto Usuario que se va a insertar.
+  /// [pass] es la contraseña del usuario.
+  ///
+  /// Retorna el ID del usuario insertado o null si falla.
+  Future<int?> insertUsuario(Usuario usuario, String pass) async {
     final db = await database;
     int? id = await db.insert('usuarios',
-      {"nombre_usuario":usuario.nombreUsuario, "email":usuario.correoElectronico, "pass":pass},
+        {
+          "nombre_usuario": usuario.nombreUsuario,
+          "email": usuario.correoElectronico,
+          "pass": pass
+        },
         conflictAlgorithm: ConflictAlgorithm.abort
     );
     return id;
   }
 
+  /// Obtiene un usuario específico por su ID.
+  ///
+  /// [id] es el ID del usuario.
+  ///
+  /// Retorna un objeto Usuario o null si no se encuentra.
   Future<Usuario?> getUsuario(int id) async {
     final db = await database;
-    final List<Map<String, dynamic>> rs = await db.rawQuery('SELECT id,nombre_usuario,email FROM usuarios WHERE id = ?', [id],);
+    final List<Map<String, dynamic>> rs = await db.rawQuery('SELECT id, nombre_usuario, email FROM usuarios WHERE id = ?', [id]);
     if (rs.isNotEmpty) {
       Usuario usuario = Usuario(
         rs.first["id"],
         rs.first["nombre_usuario"],
         rs.first["email"],
-
       );
       return usuario;
     } else {
@@ -156,6 +172,12 @@ class DatabaseHelper {
     }
   }
 
+  /// Inicia sesión comprobando el nombre de usuario y la contraseña.
+  ///
+  /// [nombreUsuario] es el nombre de usuario.
+  /// [pass] es la contraseña.
+  ///
+  /// Retorna el ID del usuario si las credenciales son correctas, de lo contrario retorna null.
   Future<int?> login(String nombreUsuario, String pass) async {
     final Database db = await database;
     final List<Map<String, dynamic>> rs = await db.query(
@@ -172,9 +194,15 @@ class DatabaseHelper {
     }
   }
 
-  Future<bool> registro(Usuario usuario, pass) async{
+  /// Registra un nuevo usuario comprobando si el nombre de usuario ya existe.
+  ///
+  /// [usuario] es el objeto Usuario a registrar.
+  /// [pass] es la contraseña del usuario.
+  ///
+  /// Retorna true si el registro es exitoso, de lo contrario false.
+  Future<bool> registro(Usuario usuario, String pass) async {
     final db = await database;
-    final List<Map<String, dynamic>> rs = await db.rawQuery('SELECT id FROM usuarios WHERE nombre_usuario = ?',[usuario.nombreUsuario]);
+    final List<Map<String, dynamic>> rs = await db.rawQuery('SELECT id FROM usuarios WHERE nombre_usuario = ?', [usuario.nombreUsuario]);
     if (rs.isNotEmpty) {
       return false;
     } else {
